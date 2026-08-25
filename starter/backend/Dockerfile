@@ -1,22 +1,25 @@
-FROM public.ecr.aws/docker/library/python:3.10-slim
+FROM public.ecr.aws/docker/library/python:3.10-slim-bookworm
+
 ENV FLASK_RUN_HOST=0.0.0.0
 
 WORKDIR /
-RUN adduser --uid 1000 --disabled-password app
+
+RUN adduser --uid 1000 --disabled-password --gecos "" app
+
 RUN apt-get update && \
     apt-get install -y \
     gcc \
     build-essential \
-    libpcre3 \
-    libpcre3-dev \
+    libpcre2-dev \
     && rm -rf /var/lib/apt/lists/* \
     && pip install pipenv
 
 RUN mkdir -p /var/www/app && mkdir /app
 
 COPY Pipfile* /app
+
 RUN cd /app && pipenv install --system --deploy
 
 COPY . /app
 
-CMD uwsgi --http :5000 --master --enable-threads -s /var/www/app/app.sock --manage-script-name --mount /=app:app
+CMD ["uwsgi", "--http", ":5000", "--master", "--enable-threads", "-s", "/var/www/app/app.sock", "--manage-script-name", "--mount", "/=app:app"]
