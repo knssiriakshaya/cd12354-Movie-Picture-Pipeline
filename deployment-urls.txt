@@ -1,5 +1,5 @@
 Frontend Application URL:
-http://YOUR-FRONTEND-LOADBALANCER-URL
+http://http://a64b9912870d64a8da4e12afa32d632e-798260351.us-east-1.elb.amazonaws.com/
 
 Backend API URL:
-http://YOUR-BACKEND-LOADBALANCER-URL/movies
+http://http://a8a705a5ab46d4a738786a2b2b06baac-627402915.us-east-1.elb.amazonaws.com/movies
