@@ -1,0 +1,5 @@
+Frontend Application URL:
+http://YOUR-FRONTEND-LOADBALANCER-URL
+
+Backend API URL:
+http://YOUR-BACKEND-LOADBALANCER-URL/movies
